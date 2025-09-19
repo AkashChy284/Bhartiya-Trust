@@ -1,0 +1,20 @@
+CREATE TABLE members (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  role VARCHAR(100),
+  bio TEXT
+);
+
+CREATE TABLE gallery (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(100),
+  image_url VARCHAR(255)
+);
+
+CREATE TABLE contact_messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  message TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
