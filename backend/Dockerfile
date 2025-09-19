@@ -1,7 +1,5 @@
-# ---- Build Stage ----
+# Stage 1: Build with Maven
 FROM maven:3.9.9-eclipse-temurin-22 AS build
-
-# Set working directory
 WORKDIR /app
 
 # Copy pom.xml and download dependencies
@@ -11,12 +9,11 @@ COPY src ./src
 # Build the JAR (skip tests for speed)
 RUN mvn clean package -DskipTests
 
-# ---- Run Stage ----
+# Stage 2: Run the app with JDK
 FROM openjdk:22-jdk
-
 WORKDIR /app
 
-# Copy the JAR from the build stage
+# Copy jar from the previous build stage
 COPY --from=build /app/target/*.jar app.jar
 
 # Run the Spring Boot app
