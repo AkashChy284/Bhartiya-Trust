@@ -1,0 +1,50 @@
+.about {
+  display: flex;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+}
+
+.about-left {
+  flex: 1;
+  position: relative;
+}
+
+.about-left img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.volunteer-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #2a9d8f;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.about-right {
+  flex: 2;
+}
+
+.about-right h3 {
+  color: #1d3557;
+  margin-bottom: 1rem;
+}
+
+.about-right p {
+  line-height: 1.6;
+}
+
+.about-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.about-table td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+}
