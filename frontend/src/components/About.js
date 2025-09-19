@@ -16,7 +16,7 @@ export default function About() {
       <div className="about-right">
         <h3>Make your Goals Always to Help Poor People</h3>
         <p>
-          Bharatiya Seva Foundation Welfare Trust (BSFWT) was established on{" "}
+          Bharatiya  Welfare Trust (BSFWT) was established on{" "}
           <strong>29th September 2020</strong> as a non-government trust in West
           Bengal. We work on issues like education, health, art & culture, and
           disaster management.

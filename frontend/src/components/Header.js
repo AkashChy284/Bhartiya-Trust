@@ -7,7 +7,7 @@ export default function Header() {
     <header className="header">
       {/* Top bar */}
       <div className="top-bar">
-        <p>Welcome! Bharatiya Seva Foundation Welfare Trust</p>
+        <p>Welcome! Bharatiya  Welfare Trust</p>
         <div className="social-icons">
           <a href="#"><i className="fab fa-facebook-f"></i></a>
           <a href="#"><i className="fab fa-twitter"></i></a>
@@ -21,7 +21,7 @@ export default function Header() {
         <div className="logo-section">
           <img src={logo} alt="BSFWT Logo" />
           <div className="trust-name">
-            <h2>Bharatiya seva <br /> Foundation Welfare Trust</h2>
+            <h2>Bharatiya <br />  Welfare Trust</h2>
           </div>
         </div>
 
