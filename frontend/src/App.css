@@ -1,0 +1,51 @@
+.hero {
+  /* Removed the faulty background-image line */
+  padding: 80px 20px;
+  color: white;
+  text-align: center;
+}
+
+.cta {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  background: #f8f8f8;
+}
+
+.causes {
+  padding: 40px;
+  text-align: center;
+}
+
+.cause-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.members-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.member-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.donation {
+  background: #eef;
+  padding: 40px;
+  text-align: center;
+}

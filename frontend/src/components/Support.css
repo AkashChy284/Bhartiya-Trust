@@ -1,0 +1,36 @@
+.support {
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.support h2 {
+  margin-bottom: 2rem;
+  color: #1d3557;
+}
+
+.support-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  color: #2a9d8f;
+}
+
+button {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: #d62828;
+}
