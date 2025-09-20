@@ -21,14 +21,22 @@
   font-size: 14px;
 }
 
-.top-bar .social-icons a {
-  margin-left: 12px;
-  color: #0d1b2a;
-  font-size: 16px;
-  text-decoration: none;
+/* Social icons (now buttons) */
+.top-bar .social-icons {
+  display: flex;
+  gap: 12px;
 }
 
-.top-bar .social-icons a:hover {
+.top-bar .social-icons .icon-btn {
+  background: none;
+  border: none;
+  cursor: default; /* not clickable */
+  color: #0d1b2a;
+  font-size: 16px;
+  padding: 0;
+}
+
+.top-bar .social-icons .icon-btn:hover {
   color: #0077cc;
 }
 

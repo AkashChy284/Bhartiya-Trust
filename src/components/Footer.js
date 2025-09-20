@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <footer className="footer">
-      <p>© 2025 Bharatiya Seva Foundation Welfare Trust</p>
+      <p>© 2025 Bhartiya Welfare Trust</p>
       <div className="footer-links">
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -13,10 +13,10 @@ export default function Footer() {
         <a href="#privacy">Privacy Policy</a>
       </div>
       <div className="footer-contact">
-        <p>📞 +91 89428 68679 | 03473-313006 | +91 9832842866</p>
+        <p>📞 +91 7003694709</p>
         <p>📧 contact@bsfwt.in</p>
         <p>
-          📍 South Chanduriya, Simurali, Nadia, WB, 741248
+          📍 14, Devi Mandir Lane, Bally (M), P.O. Liluah, P.S. Liluah, Howrah – 711204, West Bengal
         </p>
       </div>
     </footer>

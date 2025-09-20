@@ -1,50 +1,94 @@
-.about {
-  display: flex;
-  gap: 2rem;
-  padding: 4rem 2rem;
-  background: #f9f9f9;
-}
-
-.about-left {
-  flex: 1;
+/* Hero Section with Video */
+.about-hero {
   position: relative;
-}
-
-.about-left img {
-  width: 100%;
-  border-radius: 12px;
-}
-
-.volunteer-tag {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: #2a9d8f;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  padding: 1rem;
-  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
 }
 
-.about-right {
-  flex: 2;
+.about-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-.about-right h3 {
-  color: #1d3557;
-  margin-bottom: 1rem;
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
 }
 
-.about-right p {
+/* Hero Content */
+.about-hero-content h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.about-hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.about-btn {
+  background: #f6b800;
+  border: none;
+  padding: 12px 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #000;
+  transition: 0.3s;
+}
+
+.about-btn:hover {
+  background: #d49f00;
+}
+
+/* Trust Details Section */
+.about-details {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.about-details h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.about-details p {
+  margin-bottom: 20px;
   line-height: 1.6;
+}
+
+.about-details ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.about-details ul li {
+  margin-bottom: 8px;
+  color: #333;
 }
 
 .about-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
+  margin-top: 20px;
 }
 
 .about-table td {
+  padding: 10px;
   border: 1px solid #ddd;
-  padding: 8px 12px;
 }

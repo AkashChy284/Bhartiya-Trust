@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";   // ✅ Import Link
 import "./Header.css";
 import logo from "../assets/logo.png"; // replace with your logo file
 
@@ -7,12 +8,13 @@ export default function Header() {
     <header className="header">
       {/* Top bar */}
       <div className="top-bar">
-        <p>Welcome! Bharatiya  Welfare Trust</p>
+        <p>Welcome! Bhartiya Welfare Trust</p>
         <div className="social-icons">
-          <a href="#"><i className="fab fa-facebook-f"></i></a>
-          <a href="#"><i className="fab fa-twitter"></i></a>
-          <a href="#"><i className="fab fa-linkedin-in"></i></a>
-          <a href="#"><i className="fab fa-youtube"></i></a>
+          {/* ✅ Changed <a href="#"> → <button> */}
+          <button className="icon-btn"><i className="fab fa-facebook-f"></i></button>
+          <button className="icon-btn"><i className="fab fa-twitter"></i></button>
+          <button className="icon-btn"><i className="fab fa-linkedin-in"></i></button>
+          <button className="icon-btn"><i className="fab fa-youtube"></i></button>
         </div>
       </div>
 
@@ -21,16 +23,18 @@ export default function Header() {
         <div className="logo-section">
           <img src={logo} alt="BSFWT Logo" />
           <div className="trust-name">
-            <h2>Bharatiya <br />  Welfare Trust</h2>
+            <h2>
+              Bhartiya <br /> Welfare Trust
+            </h2>
           </div>
         </div>
 
         <nav className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#objectives">Objectives</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#contact">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/objectives">Objectives</Link>
+          <Link to="/gallery">Gallery</Link>
+          <Link to="/contact">Contact</Link>
         </nav>
 
         <div className="right-section">
@@ -38,10 +42,10 @@ export default function Header() {
             <span className="call-icon">📞</span>
             <div>
               <p>Call Us</p>
-              <strong>+91 89428 68679</strong>
+              <strong>+91 7003694709</strong>
             </div>
           </div>
-          <a href="#donate" className="donate-btn">Donate Now ♡</a>
+          <Link to="/donate" className="donate-btn">Donate Now ♡</Link>
         </div>
       </div>
     </header>
