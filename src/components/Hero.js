@@ -1,33 +1,31 @@
 import React from "react";
-import aboutImg from "../assets/about.jpg";
 import "./Hero.css";
+import heroVideo from "../assets/child_education.mp4"; // replace with your actual video file
 
 export default function Hero() {
   return (
-    <section className="hero-split">
-      {/* Left Side - Image */}
-      <div className="hero-left">
-        <img src={aboutImg} alt="Trust Volunteers" />
-      </div>
+    <section className="hero-bwt">
+      <div className="hero-inner">
+        <div className="hero-content-bwt">
+          <h1>
+            Let’s ensure <span className="highlight-bwt">happy</span>
+            <br />
+            <span className="underline-bwt">childhoods</span> for India’s children
+          </h1>
+          <button className="hero-btn-bwt">💛 Yes! I Want To Help!</button>
+        </div>
 
-      {/* Right Side - Content */}
-      <div className="hero-right">
-        <h1>Bhartiya Welfare Trust</h1>
-        <p>
-          Bhartiya Welfare Trust was established on{" "}
-          <strong>29th September 2024</strong> with the aim to support
-          development in education, health, art & culture, and disaster
-          management for the benefit of the community.
-        </p>
-
-        <h3>Our main projects are:</h3>
-        <ul>
-          <li>✔ Quick Fundraising for Education</li>
-          <li>✔ Mid Day Meal Program in Rural Schools</li>
-          <li>✔ Cultural & Health Awareness Programs</li>
-        </ul>
-
-        <button className="hero-btn">Know More</button>
+        <div className="hero-video-wrapper">
+          <video
+            className="hero-video"
+            src={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+          ></video>
+          <div className="paint-mask"></div>
+        </div>
       </div>
     </section>
   );

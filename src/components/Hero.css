@@ -1,66 +1,167 @@
-.hero-split {
+/* ===========================
+   HERO SECTION (Child Labour & Education)
+   =========================== */
+
+.hero-bwt {
+  width: 100%;
+  height: 100vh;
+  background-color: #fffdf6;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 10%;
-  gap: 40px;
-  flex-wrap: wrap;
-  background: #fff;
+  overflow: hidden;
+  position: relative;
 }
 
-.hero-left img {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1600px;
+  height: 100%;
 }
 
-.hero-right {
+/* ===========================
+   LEFT SIDE CONTENT
+   =========================== */
+
+.hero-content-bwt {
   flex: 1;
-  max-width: 600px;
+  z-index: 3;
+  padding-left: 2rem;
 }
 
-.hero-right h1 {
-  font-size: 32px;
-  margin-bottom: 15px;
-  color: #222;
+.hero-content-bwt h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #1e1e1e;
+  line-height: 1.3;
 }
 
-.hero-right p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #444;
+.highlight-bwt {
+  color: #ffc107;
+  font-family: "Comic Sans MS", "Poppins", sans-serif;
+  font-weight: 600;
 }
 
-.hero-right h3 {
-  margin: 20px 0 10px;
+.underline-bwt {
+  position: relative;
 }
 
-.hero-right ul {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 25px;
-}
-
-.hero-right ul li {
-  margin-bottom: 10px;
-  font-size: 15px;
-  color: #333;
-}
-
-.hero-btn {
-  background: #f6b800;
-  border: none;
-  padding: 12px 25px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
+.underline-bwt::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #ffca28;
   border-radius: 4px;
-  color: #000;
-  transition: 0.3s;
+  z-index: -1;
 }
 
-.hero-btn:hover {
-  background: #d49f00;
+.hero-btn-bwt {
+  background-color: #ffca28;
+  color: #000;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 35px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-btn-bwt:hover {
+  background-color: #ffd54f;
+  transform: translateY(-3px);
+}
+
+/* ===========================
+   RIGHT SIDE (VIDEO + PAINT STROKE)
+   =========================== */
+
+.hero-video-wrapper {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  position: relative;
+  filter: brightness(0.95);
+}
+
+* 🔥 Yellow Paint Stroke Overlay */
+.paint-mask {
+  position: absolute;
+  top: 0;
+  left: -60px; /* pull into the white area */
+  width: 180px; /* adjust for your image */
+  height: 100%;
+  background: url("../assets/paint-texture.png") no-repeat center center;
+  background-size: cover;
+  mix-blend-mode: normal;
+  opacity: 1;
+  z-index: 3;
+  pointer-events: none;
+  filter: brightness(1.1) saturate(1.3);
+}
+
+/* Smooth fade blending into video */
+.paint-mask::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 60px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 253, 246, 0.9),
+    transparent
+  );
+  
+}
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 100px 20px;
+  }
+
+  .hero-content-bwt {
+    padding: 0;
+  }
+
+  .hero-content-bwt h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-video-wrapper {
+    width: 100%;
+    height: 300px;
+    margin-top: 30px;
+  }
+
+  .paint-mask {
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
 }

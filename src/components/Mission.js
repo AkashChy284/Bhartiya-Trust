@@ -1,52 +1,63 @@
 import React from "react";
 import "./Mission.css";
-import missionImg from "../assets/mission.jpg"; // replace with your actual image
+import visionImg from "../assets/child1.jpg";   // top child image (boy)
+import missionImg from "../assets/child2.jpg";  // bottom child image (girl)
 
 export default function Mission() {
   return (
-    <section className="mission" id="mission">
-      <div className="mission-container">
-        
-        {/* Left Image */}
-        <div className="mission-image">
-          <img src={missionImg} alt="Our Mission" />
-          <div className="volunteer-badge">
-            <h3>12K+</h3>
-            <p>Volunteers</p>
+    <>
+      {/* --- Mission Cards Section --- */}
+      <section className="mission-cards">
+        <div className="mission-card green">
+          <div className="icon">🎂</div>
+          <p>No child dies before their 5th birthday due to any preventable cause</p>
+        </div>
+
+        <div className="mission-card blue">
+          <div className="icon">📘</div>
+          <p>Every child receives basic quality education</p>
+        </div>
+
+        <div className="mission-card purple">
+          <div className="icon">😊</div>
+          <p>Abuse, in any form, towards a child is not tolerated</p>
+        </div>
+      </section>
+
+      <p className="mission-subtext">
+        While we work to fulfill our vision, our mission statement endlessly inspires us.
+      </p>
+
+      {/* --- Vision & Mission Split Section --- */}
+      <section className="vision-mission">
+        <div
+          className="vision"
+          style={{ backgroundImage: `url(${visionImg})` }}
+        >
+          <div className="overlay purple-overlay" />
+          <div className="content">
+            <h2>Our Vision</h2>
+            <p>
+              Build a world in which every child has the right to survival,
+              protection, development, and participation
+            </p>
           </div>
         </div>
 
-        {/* Right Content */}
-        <div className="mission-content">
-          <a href="#donate" className="tagline">Join Us and Start Donating</a>
-          <h2>
-            Make your Goals Always to Helps <span>Poor People</span>
-          </h2>
-          <p>
-            Phosfluorescently cultivate enabled relationships without sticky practices 
-            distinctively empower next-generation e-commerce network.
-          </p>
-
-          <div className="mission-points">
-            <div className="point">
-              <span className="icon">💰</span>
-              <div>
-                <h4>Quick Fundraising</h4>
-                <p>Distinctively empower next-generation BSFWT and idea-sharing and extensible.</p>
-              </div>
-            </div>
-
-            <div className="point">
-              <span className="icon">💚</span>
-              <div>
-                <h4>Join Our Team</h4>
-                <p>Distinctively empower next-generation BSFWT and idea-sharing and extensible.</p>
-              </div>
-            </div>
+        <div
+          className="mission"
+          style={{ backgroundImage: `url(${missionImg})` }}
+        >
+          <div className="overlay pink-overlay" />
+          <div className="content">
+            <h2>Our Mission</h2>
+            <p>
+              To inspire breakthroughs in the way the world treats children, and
+              to achieve immediate, and lasting change in their lives
+            </p>
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,121 +1,178 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.header {
+/* --- Global Header Container --- */
+.main-header-bwt {
   width: 100%;
-  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif; /* Use a clean font */
 }
 
-/* Top Bar */
-.top-bar {
+/* --- Top Bar Styling (Black Section) --- */
+.header-top-bwt {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+.header-top-content-bwt {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff5f2;
-  color: #333;
-  padding: 5px 40px;
-  font-size: 14px;
+  max-width: 1200px; /* Optional: Center content */
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* Social icons (now buttons) */
-.top-bar .social-icons {
+.contact-info-bwt {
   display: flex;
-  gap: 12px;
-}
-
-.top-bar .social-icons .icon-btn {
-  background: none;
-  border: none;
-  cursor: default; /* not clickable */
-  color: #0d1b2a;
-  font-size: 16px;
-  padding: 0;
-}
-
-.top-bar .social-icons .icon-btn:hover {
-  color: #0077cc;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  padding: 15px 40px;
-  border-bottom: 2px solid #e5e5e5;
-}
-
-.logo-section {
-  display: flex;
-  align-items: center;
-}
-
-.logo-section img {
-  height: 70px;
-  margin-right: 10px;
-}
-
-.trust-name h2 {
-  font-size: 18px;
-  color: #ffffff;
-  background: #4a8ff5;
-  padding: 8px 12px;
-  border-radius: 6px;
-  line-height: 1.3;
-}
-
-/* Nav links */
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  font-weight: bold;
-  color: #0d1b2a;
-  font-size: 16px;
-}
-
-.nav-links a:hover {
-  color: #4a8ff5;
-}
-
-/* Right side */
-.right-section {
-  display: flex;
-  align-items: center;
   gap: 20px;
 }
 
-.call-us {
+.contact-item-bwt i {
+  margin-right: 5px;
+}
+
+.utility-section-bwt {
   display: flex;
   align-items: center;
-  border-right: 1px solid #ddd;
-  padding-right: 15px;
+  gap: 15px;
 }
 
-.call-icon {
-  font-size: 24px;
-  margin-right: 10px;
-  color: #28a745;
+/* Search Box (Dark Grey) */
+.search-box-bwt {
+  background-color: #333; /* Darker grey */
+  border-radius: 4px;
 }
 
-.donate-btn {
-  background: #1d64e7;
+.search-box-bwt form {
+  display: flex;
+}
+
+.search-box-bwt input {
+  background: none;
+  border: none;
+  color: #ccc;
+  padding: 5px 10px;
+  width: 150px;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.search-box-bwt input::placeholder {
+  color: #aaa;
+}
+
+/* Social Icons */
+.social-icons-bwt {
+  display: flex;
+  gap: 12px;
+  /* Match the color of the icons in the image's top bar (white) */
+}
+
+.social-icons-bwt a {
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 25px;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.social-icons-bwt a:hover {
+  color: #fdd835; /* Yellow on hover */
+}
+
+
+/* --- Main Navbar Styling (Below Black Bar) --- */
+.header-nav-bwt {
+  display: flex;
+  align-items: stretch; /* Stretch items to match logo container height */
+  height: 60px; /* Set a standard height for the main bar */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo Section (Yellow Background) */
+.header-logo-container-bwt {
+  background-color: #fdd835; /* Bright yellow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.header-logo-container-bwt a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  height: 100%; /* Important for vertical alignment */
+  justify-content: center;
+}
+
+.header-logo-bwt {
+  max-height: 40px; /* Adjust logo size */
+  width: auto;
+}
+
+.logo-text-bwt {
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #000; /* Black text on yellow background */
+    margin-top: 2px;
+}
+
+
+/* Navigation Menu */
+.nav-menu-bwt {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 30px;
+  flex-grow: 1; /* Allows the menu to take up available space */
+}
+
+.nav-menu-bwt a {
+  text-decoration: none;
+  color: #000; /* Black text for main links */
+  font-weight: 600;
+  padding: 0 5px;
+  transition: color 0.2s, border-bottom 0.2s;
+  /* Styles to mimic the link spacing and underline of the image */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-bwt a:hover {
+  color: #fdd835; /* Yellow text on hover (if not using the main bar background color) */
+  border-bottom: 3px solid #fdd835; /* Optional underline effect */
+}
+
+
+/* Donate Button (Yellow, on the far right) */
+.header-donate-bwt {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.donate-btn-bwt {
+  background-color: #fdd835; /* Bright yellow button */
+  color: #000; /* Black text */
   text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  white-space: nowrap; /* Prevents text wrap */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Match the large yellow button style in the image */
+  height: 80%;
 }
 
-.donate-btn:hover {
-  background: #164bb3;
+.donate-btn-bwt:hover {
+  background-color: #ffc107; /* Slightly darker yellow on hover */
+}
+
+.donate-btn-bwt i {
+  font-size: 1rem;
 }
