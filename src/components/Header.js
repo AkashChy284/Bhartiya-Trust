@@ -39,11 +39,11 @@ const Header = () => {
           {/* Social + Search */}
           <div className="utility-section-bwt">
             <div className="social-icons-bwt">
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaTwitter /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaLinkedinIn /></a>
-              <a href="#"><FaYoutube /></a>
+              <a href="/"><FaFacebookF /></a>
+              <a href="/"><FaTwitter /></a>
+              <a href="/"><FaInstagram /></a>
+              <a href="/"><FaLinkedinIn /></a>
+              <a href="/"><FaYoutube /></a>
             </div>
             <div className="search-box-bwt">
               <form>
