@@ -68,7 +68,7 @@ public class DonationController {
 
             qrImage.transferTo(savedFile);
 
-            donation.setQrImageUrl("http://localhost:8080/uploads/" + fileName);
+            donation.setQrImageUrl("https://bhartiya-trust-6.onrender.com/uploads/" + fileName);
         }
 
         return donationRepository.save(donation);

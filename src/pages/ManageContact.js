@@ -13,7 +13,7 @@ export default function ManageContact() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/contact-info")
+    fetch("https://bhartiya-trust-6.onrender.com/api/contact-info")
       .then((res) => res.json())
       .then((data) => setContact(data))
       .catch((err) => console.log(err));
@@ -29,7 +29,7 @@ export default function ManageContact() {
   const updateContact = async (e) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:8080/api/contact-info/${contact.id}`, {
+    await fetch(`https://bhartiya-trust-6.onrender.com/api/contact-info/${contact.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

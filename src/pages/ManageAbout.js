@@ -13,7 +13,7 @@ export default function ManageAbout() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/about-content")
+    fetch("https://bhartiya-trust-6.onrender.com/api/about-content")
       .then((res) => res.json())
       .then((data) => setAbout(data))
       .catch((err) => console.log(err));
@@ -29,7 +29,7 @@ export default function ManageAbout() {
   const updateAbout = async (e) => {
     e.preventDefault();
 
-    await fetch(`http://localhost:8080/api/about-content/${about.id}`, {
+    await fetch(`https://bhartiya-trust-6.onrender.com/api/about-content/${about.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

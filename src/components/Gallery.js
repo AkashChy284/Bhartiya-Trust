@@ -5,7 +5,7 @@ export default function Gallery() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/gallery")
+    fetch("https://bhartiya-trust-6.onrender.com/api/gallery")
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.log(err));

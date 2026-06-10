@@ -12,12 +12,12 @@ export default function AdminDashboard() {
   const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/members")
+    fetch("https://bhartiya-trust-6.onrender.com/api/members")
       .then((res) => res.json())
       .then((data) => setMemberCount(data.length))
       .catch(() => setMemberCount(0));
 
-    fetch("http://localhost:8080/api/gallery")
+    fetch("https://bhartiya-trust-6.onrender.com/api/gallery")
       .then((res) => res.json())
       .then((data) => setGalleryCount(data.length))
       .catch(() => setGalleryCount(0));

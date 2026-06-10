@@ -12,7 +12,7 @@ export default function About() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/about-content")
+    fetch("https://bhartiya-trust-6.onrender.com/api/about-content")
       .then((res) => res.json())
       .then((data) => setAbout(data))
       .catch((err) => console.log(err));

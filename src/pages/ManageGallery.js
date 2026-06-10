@@ -9,7 +9,7 @@ export default function ManageGallery() {
   const [preview, setPreview] = useState("");
 
   const fetchImages = async () => {
-    const res = await fetch("http://localhost:8080/api/gallery");
+    const res = await fetch("https://bhartiya-trust-6.onrender.com/api/gallery");
     const data = await res.json();
     setImages(data);
   };
@@ -38,7 +38,7 @@ export default function ManageGallery() {
     const formData = new FormData();
     formData.append("image", image);
 
-    await fetch("http://localhost:8080/api/gallery", {
+    await fetch("https://bhartiya-trust-6.onrender.com/api/gallery", {
       method: "POST",
       body: formData,
     });
@@ -55,7 +55,7 @@ export default function ManageGallery() {
   const deleteImage = async (id) => {
     if (!window.confirm("Delete this gallery image?")) return;
 
-    await fetch(`http://localhost:8080/api/gallery/${id}`, {
+    await fetch(`https://bhartiya-trust-6.onrender.com/api/gallery/${id}`, {
       method: "DELETE",
     });
 

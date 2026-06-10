@@ -14,7 +14,7 @@ export default function ManageMembers() {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/members");
+      const res = await fetch("https://bhartiya-trust-6.onrender.com/api/members");
       const data = await res.json();
       setMembers(data);
     } catch (error) {
@@ -55,7 +55,7 @@ export default function ManageMembers() {
     formData.append("role", form.role);
     formData.append("image", image);
 
-    await fetch("http://localhost:8080/api/members", {
+    await fetch("https://bhartiya-trust-6.onrender.com/api/members", {
       method: "POST",
       body: formData,
     });
@@ -73,7 +73,7 @@ export default function ManageMembers() {
   const deleteMember = async (id) => {
     if (!window.confirm("Delete this member?")) return;
 
-    await fetch(`http://localhost:8080/api/members/${id}`, {
+    await fetch(`https://bhartiya-trust-6.onrender.com/api/members/${id}`, {
       method: "DELETE",
     });
 

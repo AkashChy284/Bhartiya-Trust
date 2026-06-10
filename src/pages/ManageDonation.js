@@ -18,7 +18,7 @@ export default function ManageDonation() {
   const [preview, setPreview] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/donation-info")
+    fetch("https://bhartiya-trust-6.onrender.com/api/donation-info")
       .then((res) => res.json())
       .then((data) => setDonation(data))
       .catch((err) => console.log(err));
@@ -55,7 +55,7 @@ export default function ManageDonation() {
     }
 
     const res = await fetch(
-      `http://localhost:8080/api/donation-info/${donation.id}`,
+      `https://bhartiya-trust-6.onrender.com/api/donation-info/${donation.id}`,
       {
         method: "PUT",
         body: formData,

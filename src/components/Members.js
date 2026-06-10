@@ -5,7 +5,7 @@ export default function Members() {
   const [members, setMembers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/members")
+    fetch("https://bhartiya-trust-6.onrender.com/api/members")
       .then((res) => res.json())
       .then((data) => setMembers(data))
       .catch((err) => console.log("Error loading members:", err));

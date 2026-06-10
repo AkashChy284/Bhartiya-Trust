@@ -45,7 +45,7 @@ public class MemberController {
         Member member = new Member();
         member.setName(name);
         member.setRole(role);
-        member.setImageUrl("http://localhost:8080/uploads/" + fileName);
+        member.setImageUrl("https://bhartiya-trust-6.onrender.com/uploads/" + fileName);
 
         return memberRepository.save(member);
     }

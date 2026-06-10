@@ -12,7 +12,7 @@ export default function Donate() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/donation-info")
+    fetch("https://bhartiya-trust-6.onrender.com/api/donation-info")
       .then((res) => res.json())
       .then((data) => setDonation(data))
       .catch((err) => console.log(err));
