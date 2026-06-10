@@ -1,0 +1,178 @@
+/* --- Global Header Container --- */
+.main-header-bwt {
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif; /* Use a clean font */
+}
+
+/* --- Top Bar Styling (Black Section) --- */
+.header-top-bwt {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+.header-top-content-bwt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Optional: Center content */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-info-bwt {
+  display: flex;
+  gap: 20px;
+}
+
+.contact-item-bwt i {
+  margin-right: 5px;
+}
+
+.utility-section-bwt {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Search Box (Dark Grey) */
+.search-box-bwt {
+  background-color: #333; /* Darker grey */
+  border-radius: 4px;
+}
+
+.search-box-bwt form {
+  display: flex;
+}
+
+.search-box-bwt input {
+  background: none;
+  border: none;
+  color: #ccc;
+  padding: 5px 10px;
+  width: 150px;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.search-box-bwt input::placeholder {
+  color: #aaa;
+}
+
+/* Social Icons */
+.social-icons-bwt {
+  display: flex;
+  gap: 12px;
+  /* Match the color of the icons in the image's top bar (white) */
+}
+
+.social-icons-bwt a {
+  color: #fff;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.social-icons-bwt a:hover {
+  color: #fdd835; /* Yellow on hover */
+}
+
+
+/* --- Main Navbar Styling (Below Black Bar) --- */
+.header-nav-bwt {
+  display: flex;
+  align-items: stretch; /* Stretch items to match logo container height */
+  height: 60px; /* Set a standard height for the main bar */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo Section (Yellow Background) */
+.header-logo-container-bwt {
+  background-color: #fdd835; /* Bright yellow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.header-logo-container-bwt a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  height: 100%; /* Important for vertical alignment */
+  justify-content: center;
+}
+
+.header-logo-bwt {
+  max-height: 40px; /* Adjust logo size */
+  width: auto;
+}
+
+.logo-text-bwt {
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #000; /* Black text on yellow background */
+    margin-top: 2px;
+}
+
+
+/* Navigation Menu */
+.nav-menu-bwt {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 30px;
+  flex-grow: 1; /* Allows the menu to take up available space */
+}
+
+.nav-menu-bwt a {
+  text-decoration: none;
+  color: #000; /* Black text for main links */
+  font-weight: 600;
+  padding: 0 5px;
+  transition: color 0.2s, border-bottom 0.2s;
+  /* Styles to mimic the link spacing and underline of the image */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu-bwt a:hover {
+  color: #fdd835; /* Yellow text on hover (if not using the main bar background color) */
+  border-bottom: 3px solid #fdd835; /* Optional underline effect */
+}
+
+
+/* Donate Button (Yellow, on the far right) */
+.header-donate-bwt {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.donate-btn-bwt {
+  background-color: #fdd835; /* Bright yellow button */
+  color: #000; /* Black text */
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  white-space: nowrap; /* Prevents text wrap */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Match the large yellow button style in the image */
+  height: 80%;
+}
+
+.donate-btn-bwt:hover {
+  background-color: #ffc107; /* Slightly darker yellow on hover */
+}
+
+.donate-btn-bwt i {
+  font-size: 1rem;
+}

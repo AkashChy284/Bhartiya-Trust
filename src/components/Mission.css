@@ -1,0 +1,140 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  color: #222;
+}
+
+/* ---------------- Mission Cards Section ---------------- */
+.mission-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #fff6e6;
+  padding: 4rem 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.mission-card {
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover {
+  transform: translateY(-5px);
+}
+
+.mission-card .icon {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+.mission-card p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+  color: #111;
+}
+
+.mission-card.green {
+  border-top: 100px solid #7ac79b;
+}
+
+.mission-card.blue {
+  border-top: 100px solid #5ab5c4;
+}
+
+.mission-card.purple {
+  border-top: 100px solid #a78bfa;
+}
+
+.mission-subtext {
+  text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin: 1.5rem 0 4rem;
+  color: #333;
+}
+
+/* ---------------- Vision & Mission Split Section ---------------- */
+.vision-mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.vision,
+.mission {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-size: 200px 200px;
+  background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+  background-blend-mode: overlay;
+  mix-blend-mode: lighten;
+}
+
+.purple-overlay {
+  background-color: rgba(185, 160, 226, 0.9);
+}
+
+.pink-overlay {
+  background-color: rgba(245, 179, 184, 0.9);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  color: #000;
+  max-width: 600px;
+}
+
+.content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 900px) {
+  .vision-mission {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mission-card {
+    width: 90%;
+  }
+}
