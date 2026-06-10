@@ -133,7 +133,6 @@ export default function About() {
               <span style={{ fontSize: "2rem" }}>📘</span>
               <h3>Work in Education Sector</h3>
             </div>
-
             <div
               style={{
                 background: "#f7f4e9",

@@ -19,10 +19,7 @@ export default function Gallery() {
       <div className="gallery-grid">
         {images.map((img) => (
           <div key={img.id} className="gallery-item">
-            <img
-              src={img.imageUrl}
-              alt="Gallery"
-            />
+            <img src={img.imageUrl} alt="Gallery" />
           </div>
         ))}
       </div>

@@ -48,48 +48,48 @@ export default function Footer() {
           <div className="footer-links">
             <div>
               <h4>ABOUT US</h4>
-              <a href="#">Overview</a>
-              <a href="#">Mission & Vision</a>
-              <a href="#">Financials</a>
-              <a href="#">Raksha Journal</a>
-              <a href="#">Our Team</a>
-              <a href="#">Governing Council</a>
-              <a href="#">Our Donor Wall</a>
+              <a href="/">Overview</a>
+              <a href="/">Mission & Vision</a>
+              <a href="/">Financials</a>
+              <a href="/">Raksha Journal</a>
+              <a href="/">Our Team</a>
+              <a href="/">Governing Council</a>
+              <a href="/">Our Donor Wall</a>
             </div>
 
             <div>
               <h4>WHAT WE DO?</h4>
-              <a href="#">Education</a>
-              <a href="#">Health and Nutrition</a>
-              <a href="#">Our Programmes</a>
-              <a href="#">Engagement with Government</a>
-              <a href="#">Resilience</a>
-              <a href="#">Social Inclusion</a>
-              <a href="#">Child Protection</a>
-              <a href="#">Humanitarian</a>
-              <a href="#">Child Welfare</a>
+              <a href="/">Education</a>
+              <a href="/">Health and Nutrition</a>
+              <a href="/">Our Programmes</a>
+              <a href="/">Engagement with Government</a>
+              <a href="/">Resilience</a>
+              <a href="/">Social Inclusion</a>
+              <a href="/">Child Protection</a>
+              <a href="/">Humanitarian</a>
+              <a href="/">Child Welfare</a>
             </div>
 
             <div>
               <h4>TAKE ACTION</h4>
-              <a href="#">Donate</a>
-              <a href="#">Volunteer</a>
-              <a href="#">Donation Receipt</a>
-              <a href="#">Other Ways To Help</a>
-              <a href="#">High Value Gifting</a>
-              <a href="#">Child Safeguarding</a>
-              <a href="#">Contact Us</a>
-              <a href="#">Careers</a>
+              <a href="/">Donate</a>
+              <a href="/">Volunteer</a>
+              <a href="/">Donation Receipt</a>
+              <a href="/">Other Ways To Help</a>
+              <a href="/">High Value Gifting</a>
+              <a href="/">Child Safeguarding</a>
+              <a href="/">Contact Us</a>
+              <a href="/">Careers</a>
             </div>
 
             <div>
               <h4>RESOURCES</h4>
-              <a href="#">Latest Blog</a>
-              <a href="#">Press Coverage</a>
-              <a href="#">News</a>
-              <a href="#">Reports</a>
-              <a href="#">FAQs</a>
-              <a href="#">Webstories</a>
+              <a href="/">Latest Blog</a>
+              <a href="/">Press Coverage</a>
+              <a href="/">News</a>
+              <a href="/">Reports</a>
+              <a href="/">FAQs</a>
+              <a href="/">Webstories</a>
             </div>
           </div>
         </div>

@@ -28,26 +28,22 @@ export default function Donate() {
             <input type="text" placeholder="Enter Name" required />
             <input type="email" placeholder="Enter Email" required />
           </div>
-
           <div className="form-row">
             <input type="tel" placeholder="Enter Phone Number" required />
             <input type="text" placeholder="Enter Location" required />
           </div>
-
           <input
             type="number"
             placeholder="Enter Donation Amount"
             required
             className="full-width"
           />
-
           <textarea
             placeholder="Your message"
             rows="4"
             required
             className="full-width"
           ></textarea>
-
           <button type="submit" className="donate-btn">
             Donate Now
           </button>
