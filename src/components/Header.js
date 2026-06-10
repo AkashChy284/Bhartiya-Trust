@@ -6,20 +6,21 @@ import "./Header.css";
 const Header = () => {
   return (
     <header className="main-header-bwt">
-      <marquee
+      <div
   style={{
     backgroundColor: "#c62d1f",
     color: "#fff",
     fontWeight: "500",
     padding: "6px 0",
     fontSize: "0.9rem",
+    textAlign: "center",
   }}
 >
-  Make your Goals Always to Help Poor People | Bhartiya Welfare Trust (BWT) was
-  established under the Indian Trust Act as a non-government trust in West
-  Bengal. We work on issues like education, health, art & culture, and disaster
+  Make your Goals Always to Help Poor People | Bhartiya Welfare Trust (BWT)
+  was established under the Indian Trust Act as a non-government trust in
+  West Bengal. We work on education, health, art & culture and disaster
   management.
-</marquee>
+</div>
 
 
       {/* 🔹 Top Black Bar */}
