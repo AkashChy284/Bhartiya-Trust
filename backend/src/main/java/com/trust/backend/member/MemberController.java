@@ -28,26 +28,36 @@ public class MemberController {
     }
 
     @PostMapping
-    public Member addMember(
-            @RequestParam("name") String name,
-            @RequestParam("role") String role,
-            @RequestParam("image") MultipartFile image
-    ) throws IOException {
+public Member addMember(
+        @RequestParam("name") String name,
+        @RequestParam("role") String role,
+        @RequestParam("image") MultipartFile image
+) throws IOException {
 
-        Map uploadResult = cloudinary.uploader().upload(
-                image.getBytes(),
-                ObjectUtils.asMap("folder", "bhartiya-trust/members")
-        );
+    System.out.println("===== CLOUDINARY DEBUG START =====");
+    System.out.println("Cloud name = " + System.getenv("CLOUDINARY_CLOUD_NAME"));
+    System.out.println("API key exists = " + (System.getenv("CLOUDINARY_API_KEY") != null));
+    System.out.println("API secret exists = " + (System.getenv("CLOUDINARY_API_SECRET") != null));
+    System.out.println("Image empty = " + image.isEmpty());
+    System.out.println("Image name = " + image.getOriginalFilename());
+    System.out.println("===== CLOUDINARY DEBUG END =====");
 
-        String imageUrl = uploadResult.get("secure_url").toString();
+    Map uploadResult = cloudinary.uploader().upload(
+            image.getBytes(),
+            ObjectUtils.asMap("folder", "bhartiya-trust/members")
+    );
 
-        Member member = new Member();
-        member.setName(name);
-        member.setRole(role);
-        member.setImageUrl(imageUrl);
+    String imageUrl = uploadResult.get("secure_url").toString();
 
-        return memberRepository.save(member);
-    }
+    Member member = new Member();
+    member.setName(name);
+    member.setRole(role);
+    member.setImageUrl(imageUrl);
+
+    return memberRepository.save(member);
+}
+
+    
 
     @DeleteMapping("/{id}")
     public void deleteMember(@PathVariable Long id) {
