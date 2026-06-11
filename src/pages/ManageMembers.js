@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const API = "https://bhartiya-trust-6.onrender.com";
+
 export default function ManageMembers() {
   const navigate = useNavigate();
 
   const [members, setMembers] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    role: "",
-  });
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch("https://bhartiya-trust-6.onrender.com/api/members");
+      const res = await fetch(`${API}/api/members`);
       const data = await res.json();
-      setMembers(data);
+
+      if (Array.isArray(data)) {
+        setMembers(data);
+      } else {
+        console.log("Members API did not return array:", data);
+        setMembers([]);
+      }
     } catch (error) {
-      console.log("Error fetching members:", error);
+      console.log("Fetch members error:", error);
+      setMembers([]);
     }
   };
 
@@ -26,58 +33,60 @@ export default function ManageMembers() {
     fetchMembers();
   }, []);
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-
-    if (file) {
-      setPreview(URL.createObjectURL(file));
-    }
-  };
-
   const addMember = async (e) => {
     e.preventDefault();
 
-    if (!image) {
-      alert("Please select member image");
+    if (!name || !role || !image) {
+      alert("Please fill name, role and image");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("role", form.role);
-    formData.append("image", image);
+    try {
+      setLoading(true);
 
-    await fetch("https://bhartiya-trust-6.onrender.com/api/members", {
-      method: "POST",
-      body: formData,
-    });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("role", role);
+      formData.append("image", image);
 
-    setForm({ name: "", role: "" });
-    setImage(null);
-    setPreview("");
+      const res = await fetch(`${API}/api/members`, {
+        method: "POST",
+        body: formData,
+      });
 
-    const input = document.getElementById("memberImageInput");
-    if (input) input.value = "";
+      if (!res.ok) {
+        const text = await res.text();
+        console.log("Upload failed:", text);
+        alert("Upload failed. Check Render logs.");
+        return;
+      }
 
-    fetchMembers();
+      setName("");
+      setRole("");
+      setImage(null);
+
+      await fetchMembers();
+      alert("Member added successfully");
+    } catch (error) {
+      console.log("Add member error:", error);
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const deleteMember = async (id) => {
     if (!window.confirm("Delete this member?")) return;
 
-    await fetch(`https://bhartiya-trust-6.onrender.com/api/members/${id}`, {
-      method: "DELETE",
-    });
+    try {
+      await fetch(`${API}/api/members/${id}`, {
+        method: "DELETE",
+      });
 
-    fetchMembers();
+      await fetchMembers();
+    } catch (error) {
+      console.log("Delete member error:", error);
+    }
   };
 
   return (
@@ -88,87 +97,67 @@ export default function ManageMembers() {
         </button>
 
         <div>
-          <h1 style={styles.title}>Members Management</h1>
-          <p style={styles.subtitle}>Add, manage and remove trust members</p>
+          <h1 style={styles.title}>Manage Members</h1>
+          <p style={styles.subtitle}>Add, view and remove trust members</p>
         </div>
 
-        <div style={styles.countBox}>
-          <span>Total Members</span>
+        <div style={styles.statusBox}>
+          <span>Total</span>
           <strong>{members.length}</strong>
         </div>
       </div>
 
-      <div style={styles.layout}>
-        <section style={styles.formPanel}>
-          <h2 style={styles.panelTitle}>Add New Member</h2>
-          <p style={styles.panelText}>Upload member photo and details.</p>
+      <div style={styles.grid}>
+        <form style={styles.formCard} onSubmit={addMember}>
+          <h2>Add New Member</h2>
 
-          <form onSubmit={addMember} style={styles.form}>
-            <input
-              style={styles.input}
-              name="name"
-              placeholder="Member Name"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
+          <label style={styles.label}>Member Name</label>
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Enter member name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-            <input
-              style={styles.input}
-              name="role"
-              placeholder="Member Role"
-              value={form.role}
-              onChange={handleChange}
-              required
-            />
+          <label style={styles.label}>Role / Designation</label>
+          <input
+            style={styles.input}
+            type="text"
+            placeholder="Enter role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          />
 
-            <label style={styles.uploadBox}>
-              <input
-                id="memberImageInput"
-                type="file"
-                accept="image/png, image/jpeg, image/jpg"
-                onChange={handleImageChange}
-                style={{ display: "none" }}
-              />
+          <label style={styles.label}>Upload Photo</label>
+          <input
+            style={styles.input}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
 
-              {preview ? (
-                <img src={preview} alt="Preview" style={styles.preview} />
-              ) : (
-                <div>
-                  <div style={styles.uploadIcon}>📤</div>
-                  <p>Click to upload member image</p>
-                  <span>PNG, JPG or JPEG</span>
-                </div>
-              )}
-            </label>
+          <button style={styles.submitBtn} type="submit" disabled={loading}>
+            {loading ? "Uploading..." : "+ Add Member"}
+          </button>
+        </form>
 
-            <button style={styles.addBtn} type="submit">
-              + Add Member
-            </button>
-          </form>
-        </section>
-
-        <section style={styles.memberPanel}>
-          <div style={styles.panelHeader}>
-            <h2 style={styles.panelTitle}>All Members</h2>
-            <span style={styles.badge}>Live from Database</span>
-          </div>
+        <div style={styles.listCard}>
+          <h2>Members List</h2>
 
           {members.length === 0 ? (
-            <div style={styles.emptyBox}>
-              No members added yet.
-            </div>
+            <p style={styles.empty}>No members added yet.</p>
           ) : (
-            <div style={styles.grid}>
+            <div style={styles.memberGrid}>
               {members.map((member) => (
-                <div key={member.id} style={styles.card}>
+                <div style={styles.memberCard} key={member.id}>
                   <img
-                    src={`${member.imageUrl}?t=${Date.now()}`}
+                    src={member.imageUrl}
                     alt={member.name}
-                    style={styles.image}
+                    style={styles.memberImg}
                   />
 
-                  <div style={styles.memberInfo}>
+                  <div>
                     <h3>{member.name}</h3>
                     <p>{member.role}</p>
                   </div>
@@ -177,13 +166,13 @@ export default function ManageMembers() {
                     style={styles.deleteBtn}
                     onClick={() => deleteMember(member.id)}
                   >
-                    Delete Member
+                    Delete
                   </button>
                 </div>
               ))}
             </div>
           )}
-        </section>
+        </div>
       </div>
     </div>
   );
@@ -192,22 +181,23 @@ export default function ManageMembers() {
 const styles = {
   page: {
     minHeight: "100vh",
-    background: "linear-gradient(135deg, #07111f, #111827, #201033)",
+    background: "linear-gradient(135deg,#07111f,#111827,#201033)",
     color: "#fff",
     padding: "30px",
     fontFamily: "Inter, Arial, sans-serif",
   },
   topbar: {
     display: "flex",
-    alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: "28px",
+    alignItems: "center",
+    gap: "20px",
+    marginBottom: "30px",
   },
   backBtn: {
-    padding: "13px 18px",
     background: "rgba(255,255,255,0.08)",
     color: "#fff",
     border: "1px solid rgba(255,255,255,0.12)",
+    padding: "12px 18px",
     borderRadius: "14px",
     cursor: "pointer",
   },
@@ -219,133 +209,86 @@ const styles = {
     margin: "8px 0 0",
     color: "#94a3b8",
   },
-  countBox: {
-    background: "linear-gradient(135deg, #7c3aed, #38bdf8)",
-    padding: "16px 22px",
+  statusBox: {
+    background: "linear-gradient(135deg,#a78bfa,#38bdf8)",
+    color: "#111827",
+    padding: "15px 25px",
     borderRadius: "18px",
     display: "grid",
-    gap: "6px",
-    minWidth: "150px",
     textAlign: "center",
-  },
-  layout: {
-    display: "grid",
-    gridTemplateColumns: "360px 1fr",
-    gap: "24px",
-  },
-  formPanel: {
-    background: "rgba(15,23,42,0.88)",
-    border: "1px solid rgba(255,255,255,0.12)",
-    borderRadius: "24px",
-    padding: "24px",
-    height: "fit-content",
-  },
-  memberPanel: {
-    background: "rgba(15,23,42,0.88)",
-    border: "1px solid rgba(255,255,255,0.12)",
-    borderRadius: "24px",
-    padding: "24px",
-  },
-  panelHeader: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: "18px",
-  },
-  panelTitle: {
-    margin: 0,
-    fontSize: "22px",
-  },
-  panelText: {
-    color: "#94a3b8",
-    marginBottom: "20px",
-  },
-  badge: {
-    background: "rgba(167,139,250,0.18)",
-    color: "#c4b5fd",
-    padding: "8px 12px",
-    borderRadius: "999px",
-    fontSize: "13px",
-  },
-  form: {
-    display: "grid",
-    gap: "16px",
-  },
-  input: {
-    padding: "14px",
-    background: "#0f172a",
-    color: "#fff",
-    border: "1px solid rgba(255,255,255,0.12)",
-    borderRadius: "14px",
-    outline: "none",
-    fontSize: "15px",
-  },
-  uploadBox: {
-    minHeight: "210px",
-    border: "1px dashed rgba(255,255,255,0.35)",
-    borderRadius: "18px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    color: "#cbd5e1",
-    cursor: "pointer",
-    background: "rgba(255,255,255,0.04)",
-    overflow: "hidden",
-  },
-  uploadIcon: {
-    fontSize: "36px",
-  },
-  preview: {
-    width: "100%",
-    height: "210px",
-    objectFit: "cover",
-  },
-  addBtn: {
-    padding: "15px",
-    background: "linear-gradient(135deg, #a78bfa, #38bdf8)",
-    color: "#0f172a",
-    border: "none",
-    borderRadius: "14px",
-    cursor: "pointer",
     fontWeight: "800",
-    fontSize: "15px",
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "380px 1fr",
+    gap: "25px",
+  },
+  formCard: {
+    background: "rgba(15,23,42,0.9)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: "24px",
+    padding: "25px",
+  },
+  listCard: {
+    background: "rgba(15,23,42,0.9)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: "24px",
+    padding: "25px",
+  },
+  label: {
+    display: "block",
+    marginTop: "16px",
+    marginBottom: "8px",
+    color: "#cbd5e1",
+  },
+  input: {
+    width: "100%",
+    padding: "14px",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,255,255,0.14)",
+    background: "#020617",
+    color: "#fff",
+    boxSizing: "border-box",
+  },
+  submitBtn: {
+    width: "100%",
+    marginTop: "22px",
+    padding: "14px",
+    borderRadius: "14px",
+    border: "none",
+    background: "linear-gradient(135deg,#facc15,#fb923c)",
+    color: "#111827",
+    fontWeight: "900",
+    cursor: "pointer",
+  },
+  empty: {
+    color: "#94a3b8",
+  },
+  memberGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
     gap: "20px",
   },
-  card: {
-    background: "rgba(2,6,23,0.75)",
+  memberCard: {
+    background: "#020617",
     border: "1px solid rgba(255,255,255,0.1)",
-    borderRadius: "22px",
-    overflow: "hidden",
+    borderRadius: "18px",
+    padding: "16px",
   },
-  image: {
+  memberImg: {
     width: "100%",
     height: "220px",
     objectFit: "cover",
-  },
-  memberInfo: {
-    padding: "18px",
+    borderRadius: "14px",
+    marginBottom: "12px",
   },
   deleteBtn: {
-    margin: "0 18px 18px",
-    width: "calc(100% - 36px)",
-    padding: "12px",
-    background: "linear-gradient(135deg, #ef4444, #f97316)",
-    color: "#fff",
+    width: "100%",
+    padding: "10px",
+    borderRadius: "10px",
     border: "none",
-    borderRadius: "12px",
+    background: "#ef4444",
+    color: "#fff",
     cursor: "pointer",
-    fontWeight: "700",
-  },
-  emptyBox: {
-    padding: "40px",
-    textAlign: "center",
-    color: "#94a3b8",
-    border: "1px dashed rgba(255,255,255,0.2)",
-    borderRadius: "18px",
   },
 };
