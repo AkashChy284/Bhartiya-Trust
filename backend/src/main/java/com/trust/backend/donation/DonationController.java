@@ -1,11 +1,13 @@
 package com.trust.backend.donation;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/donation-info")
@@ -13,9 +15,11 @@ import java.util.List;
 public class DonationController {
 
     private final DonationRepository donationRepository;
+    private final Cloudinary cloudinary;
 
-    public DonationController(DonationRepository donationRepository) {
+    public DonationController(DonationRepository donationRepository, Cloudinary cloudinary) {
         this.donationRepository = donationRepository;
+        this.cloudinary = cloudinary;
     }
 
     @GetMapping
@@ -56,19 +60,13 @@ public class DonationController {
         donation.setIfscCode(ifscCode);
 
         if (qrImage != null && !qrImage.isEmpty()) {
-            String uploadDir = System.getProperty("user.dir") + "/uploads/";
-            File folder = new File(uploadDir);
+            Map uploadResult = cloudinary.uploader().upload(
+                    qrImage.getBytes(),
+                    ObjectUtils.asMap("folder", "bhartiya-trust/donation")
+            );
 
-            if (!folder.exists()) {
-                folder.mkdirs();
-            }
-
-            String fileName = System.currentTimeMillis() + "_" + qrImage.getOriginalFilename();
-            File savedFile = new File(uploadDir + fileName);
-
-            qrImage.transferTo(savedFile);
-
-            donation.setQrImageUrl("https://bhartiya-trust-6.onrender.com/uploads/" + fileName);
+            String imageUrl = uploadResult.get("secure_url").toString();
+            donation.setQrImageUrl(imageUrl);
         }
 
         return donationRepository.save(donation);

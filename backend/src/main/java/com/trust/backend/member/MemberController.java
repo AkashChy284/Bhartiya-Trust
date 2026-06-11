@@ -1,11 +1,13 @@
 package com.trust.backend.member;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/members")
@@ -13,9 +15,11 @@ import java.util.List;
 public class MemberController {
 
     private final MemberRepository memberRepository;
+    private final Cloudinary cloudinary;
 
-    public MemberController(MemberRepository memberRepository) {
+    public MemberController(MemberRepository memberRepository, Cloudinary cloudinary) {
         this.memberRepository = memberRepository;
+        this.cloudinary = cloudinary;
     }
 
     @GetMapping
@@ -30,22 +34,17 @@ public class MemberController {
             @RequestParam("image") MultipartFile image
     ) throws IOException {
 
-        String uploadDir = System.getProperty("user.dir") + "/uploads/";
-        File folder = new File(uploadDir);
+        Map uploadResult = cloudinary.uploader().upload(
+                image.getBytes(),
+                ObjectUtils.asMap("folder", "bhartiya-trust/members")
+        );
 
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
-
-        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
-        File savedFile = new File(uploadDir + fileName);
-
-        image.transferTo(savedFile);
+        String imageUrl = uploadResult.get("secure_url").toString();
 
         Member member = new Member();
         member.setName(name);
         member.setRole(role);
-        member.setImageUrl("https://bhartiya-trust-6.onrender.com/uploads/" + fileName);
+        member.setImageUrl(imageUrl);
 
         return memberRepository.save(member);
     }

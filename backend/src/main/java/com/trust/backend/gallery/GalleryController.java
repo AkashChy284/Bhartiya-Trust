@@ -1,11 +1,13 @@
 package com.trust.backend.gallery;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/gallery")
@@ -13,9 +15,11 @@ import java.util.List;
 public class GalleryController {
 
     private final GalleryRepository galleryRepository;
+    private final Cloudinary cloudinary;
 
-    public GalleryController(GalleryRepository galleryRepository) {
+    public GalleryController(GalleryRepository galleryRepository, Cloudinary cloudinary) {
         this.galleryRepository = galleryRepository;
+        this.cloudinary = cloudinary;
     }
 
     @GetMapping
@@ -26,20 +30,15 @@ public class GalleryController {
     @PostMapping
     public GalleryImage uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
 
-        String uploadDir = System.getProperty("user.dir") + "/uploads/";
-        File folder = new File(uploadDir);
+        Map uploadResult = cloudinary.uploader().upload(
+                image.getBytes(),
+                ObjectUtils.asMap("folder", "bhartiya-trust/gallery")
+        );
 
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
-
-        String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
-        File savedFile = new File(uploadDir + fileName);
-
-        image.transferTo(savedFile);
+        String imageUrl = uploadResult.get("secure_url").toString();
 
         GalleryImage galleryImage = new GalleryImage();
-        galleryImage.setImageUrl("https://bhartiya-trust-6.onrender.com/uploads/" + fileName);
+        galleryImage.setImageUrl(imageUrl);
 
         return galleryRepository.save(galleryImage);
     }
